@@ -1,1 +1,3 @@
-export default (initialNum, exp1989 = 89, exp2019 = 19) => initialNum + exp1989 + exp2019;
+export default function getSumOfHoods(initialNumber, expansion1989 = 89, expansion2019 = 19) {
+  return initialNumber + expansion1989 + expansion2019;
+}
