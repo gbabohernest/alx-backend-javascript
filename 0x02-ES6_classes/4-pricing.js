@@ -38,11 +38,12 @@ export default class Pricing {
     return `${this._amount} ${this._currency._name} (${this._currency._code})`;
   }
 
-  static covertPrice(amount, conversionRate) {
-    if (typeof amount === 'number' && typeof conversionRate === 'number') {
-      return amount * conversionRate;
+  static convertPrice(amount, conversionRate) {
+    if (typeof amount !== 'number' || typeof conversionRate !== 'number') {
+      throw new Error('Type must be a number');
     }
 
-    return null;
+    const price = (amount * conversionRate).toFixed(2);
+    return parseFloat(price);
   }
 }
