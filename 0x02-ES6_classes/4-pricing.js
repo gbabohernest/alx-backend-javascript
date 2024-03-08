@@ -43,6 +43,6 @@ export default class Pricing {
       return amount * conversionRate;
     }
 
-    throw new Error('Type must be a number');
+    return null;
   }
 }
