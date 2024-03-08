@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle, class-methods-use-this */
 export default class Building {
   constructor(sqft) {
     if (typeof sqft !== 'number') {
@@ -9,12 +10,6 @@ export default class Building {
     Object.defineProperty(this, 'sqft', {
       get() {
         return this._sqft;
-      },
-      set(value) {
-        if (typeof value !== 'number') {
-          throw new Error('value must be a number');
-        }
-        this._sqft = value;
       },
     });
   }
