@@ -39,11 +39,10 @@ export default class Pricing {
   }
 
   static covertPrice(amount, conversionRate) {
-    if (typeof amount !== 'number' || typeof conversionRate !== 'number') {
-      throw new Error('Type must be a number');
+    if (typeof amount === 'number' && typeof conversionRate === 'number') {
+      return amount * conversionRate;
     }
 
-    const price = amount * conversionRate;
-    return price;
+    throw new Error('Type must be a number');
   }
 }
