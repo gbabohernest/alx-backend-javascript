@@ -6,18 +6,18 @@ export default class Building {
     }
     this._sqft = sqft;
 
+    // Check if constructor invoked with new keyword was not Building constructor
+    if (new.target !== Building && this.evacuationWarningMessage === undefined) {
+      throw new Error(
+        'Class extending Building must override evacuationWarningMessage',
+      );
+    }
+
     // create getter & setter for this property
     Object.defineProperty(this, 'sqft', {
       get() {
         return this._sqft;
       },
     });
-  }
-
-  // abstract method
-  evacuationWarningMessage() {
-    throw new Error(
-      'Class extending Building must override evacuationWarningMessage',
-    );
   }
 }
