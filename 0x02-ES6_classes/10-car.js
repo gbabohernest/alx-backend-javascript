@@ -27,7 +27,15 @@ export default class Car {
     });
   }
 
+  static get [Symbol.species]() {
+    return this;
+  }
+
   cloneCar() {
-    return new this.constructor(this._brand, this._motor, this._color);
+    return new this.constructor[Symbol.species](
+      this._brand,
+      this._motor,
+      this._color,
+    );
   }
 }
