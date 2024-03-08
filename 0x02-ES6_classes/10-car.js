@@ -7,35 +7,11 @@ export default class Car {
     this._brand = brand;
     this._motor = motor;
     this._color = color;
-
-    Object.defineProperties(this, {
-      brand: {
-        get() {
-          return this._brand;
-        },
-      },
-      motor: {
-        get() {
-          return this._motor;
-        },
-      },
-      color: {
-        get() {
-          return this._color;
-        },
-      },
-    });
-  }
-
-  static get [Symbol.species]() {
-    return this;
   }
 
   cloneCar() {
-    return new this.constructor[Symbol.species](
-      this._brand,
-      this._motor,
-      this._color,
-    );
+    const newCar = new this.constructor(this._brand, this._motor, this._color);
+    Object.setPrototypeOf(newCar, Object.getPrototypeOf(this));
+    return newCar;
   }
 }
