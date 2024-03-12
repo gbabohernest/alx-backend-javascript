@@ -1,4 +1,8 @@
 export default (set, startString) => {
+  if (startString === undefined || startString.length === 0) {
+    return '';
+  }
+
   const answerString = [];
   const arrayOfSetValues = [...set];
 
