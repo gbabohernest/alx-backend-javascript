@@ -13,8 +13,6 @@ export default (set, startString) => {
         const str = element.substring(strLen);
         answerString.push(str);
         // console.log(ans);
-      } else {
-        // answerString.push('');
       }
     });
   }
