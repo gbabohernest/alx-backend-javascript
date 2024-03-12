@@ -14,7 +14,7 @@ export default (set, startString) => {
         answerString.push(str);
         // console.log(ans);
       } else {
-        answerString.push('');
+        // answerString.push('');
       }
     });
   }
