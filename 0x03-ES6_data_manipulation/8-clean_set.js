@@ -1,5 +1,5 @@
 export default (set, startString) => {
-  if (startString === undefined || startString.length === 0) {
+  if (startString === undefined || startString.trim().length === 0) {
     return '';
   }
 
