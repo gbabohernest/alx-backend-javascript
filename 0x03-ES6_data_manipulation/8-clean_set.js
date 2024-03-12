@@ -1,5 +1,5 @@
 export default (set, startString) => {
-  if (startString === undefined || startString.trim().length === 0) {
+  if (startString === undefined || startString.length === 0) {
     return '';
   }
 
@@ -8,11 +8,13 @@ export default (set, startString) => {
 
   if (startString) {
     arrayOfSetValues.forEach((element) => {
-      if (element.startsWith(startString)) {
+      if (element !== undefined && element.startsWith(startString)) {
         const strLen = startString.length;
         const str = element.substring(strLen);
         answerString.push(str);
         // console.log(ans);
+      } else {
+        answerString.push('');
       }
     });
   }
