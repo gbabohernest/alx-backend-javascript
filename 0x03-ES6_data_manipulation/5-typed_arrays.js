@@ -7,7 +7,7 @@ export default (length, position, value) => {
     throw new Error('Position is out of bonds');
   }
   const buffer = new ArrayBuffer(length);
-  const int8View = new Int8Array(buffer);
+  const int8View = new Int8Array(buffer, 0, length);
   int8View.set([value], position);
   return new DataView(buffer);
 };
