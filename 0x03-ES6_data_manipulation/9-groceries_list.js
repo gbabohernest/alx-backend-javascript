@@ -8,8 +8,10 @@ export default () => {
     Banana: 5,
   };
 
-  for (const [name, quantity] of Object.entries(groceryItems)) {
+  /*for (const [name, quantity] of Object.entries(groceryItems)) {
     groceriesListMap.set(name, quantity);
-  }
+  }*/
+  const keys = Object.keys(groceryItems);
+  keys.map((key) => groceriesListMap.set(key, groceryItems[key]));
   return groceriesListMap;
 };
