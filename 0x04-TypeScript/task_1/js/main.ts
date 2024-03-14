@@ -1,3 +1,7 @@
+/**
+ * *************** TEACHER INTERFACE CODE ********************
+ */
+
 interface Teacher {
   firstName: string;
   lastName: string;
@@ -20,4 +24,32 @@ const printTeacher: printTeacherFunction = (firstName, lastName) => {
   return `${initial}. ${lastName}`;
 };
 
-console.log(printTeacher('John', 'Doe'));
+// console.log(printTeacher('John', 'Doe'));
+
+/**
+ * *************** STUDENT CLASS CODE ********************
+ */
+
+interface StudentClassConstructor {
+  new (firstName: string, lastName: string): StudentClassInterface;
+}
+interface StudentClassInterface {
+  workOnHomeWork(): string;
+  displayName(): string;
+}
+
+class StudentClass implements StudentClassInterface {
+  constructor(public firstName: string, public lastName: string) {}
+  workOnHomeWork(): string {
+    return 'Currently working';
+  }
+
+  displayName(): string {
+    return this.firstName;
+  }
+}
+
+/* const student = new StudentClass('Jane', 'Doe');
+console.log(student.workOnHomeWork());
+console.log(student.displayName());
+ */
