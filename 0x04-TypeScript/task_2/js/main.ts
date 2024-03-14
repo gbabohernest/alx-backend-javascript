@@ -1,3 +1,7 @@
+/**
+ * --------------- EMPLOYEE CODE ------------------
+ */
+
 interface DirectorInterface {
   workFromHome(): string;
   getCoffeeBreak(): string;
@@ -64,3 +68,22 @@ console.log(createEmployee('$500')); */
 
 /* console.log(executeWork(createEmployee(200)));
 console.log(executeWork(createEmployee(1000))); */
+
+/**
+ *  STRING LITERAL TYPES - TYPE ALIASES
+ */
+
+type Subjects = 'Math' | 'History';
+
+const teachClass = (todayClass: Subjects): string => {
+  if (todayClass === 'Math') {
+    return 'Teaching Math';
+  } else if (todayClass === 'History') {
+    return 'Teaching History';
+  } else {
+    throw new Error('Invalid subject');
+  }
+};
+
+// console.log(teachClass('Math'));
+// console.log(teachClass('History'));
