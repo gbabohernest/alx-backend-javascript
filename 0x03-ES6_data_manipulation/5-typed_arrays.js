@@ -4,7 +4,7 @@ export default (length, position, value) => {
   }
 
   if (position < 0 || position >= length) {
-    throw new Error('Position is out of bonds');
+    throw new Error('Position is outside of range');
   }
   const buffer = new ArrayBuffer(length);
   const int8View = new Int8Array(buffer);
