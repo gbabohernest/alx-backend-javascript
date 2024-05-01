@@ -33,7 +33,9 @@ const handleRequest = async (req, res) => {
 
   if (url === '/') {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('Hello Holberton School!');
+    res.write('Hello Holberton School!');
+    res.end();
+    // res.end('Hello Holberton School!');
   } else if (url === '/students') {
     try {
       const students = await countStudents(DB_FILE);
@@ -41,13 +43,12 @@ const handleRequest = async (req, res) => {
       const csStudents = students.filter((student) => student.field === 'CS');
       const sweStudents = students.filter((student) => student.field === 'SWE');
 
-      let response = 'This is the list of our students\n';
-      response += `Number of students: ${totalStudents}\n`;
-      response += `Number of students in CS: ${csStudents.length}. List: ${csStudents.map((student) => student.firstname).join(', ')}\n`;
-      response += `Number of students in SWE: ${sweStudents.length}. List: ${sweStudents.map((student) => student.firstname).join(', ')}`;
-
       res.writeHead(200, { 'Content-Type': 'text/plain' });
-      res.end(response);
+      res.write('This is the list of our students\n');
+      res.write(`Number of students: ${totalStudents}\n`);
+      res.write(`Number of students in CS: ${csStudents.length}. List: ${csStudents.map((student) => student.firstname).join(', ')}\n`);
+      res.write(`Number of students in SWE: ${sweStudents.length}. List: ${sweStudents.map((student) => student.firstname).join(', ')}`);
+      res.end();
     } catch (err) {
       res.writeHead(500, { 'Content-Type': 'text/plain' });
       res.end(err.message);
