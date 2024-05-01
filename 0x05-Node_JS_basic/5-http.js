@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const http = require('http');
 const fs = require('fs');
 
@@ -10,21 +11,32 @@ const countStudents = (filePath) => new Promise((resolve, reject) => {
   fs.readFile(filePath, 'utf-8', (err, data) => {
     if (err) {
       reject(new Error('Cannot load the database'));
-      return;
-    }
+    } else {
+      const lines = data.trim().split('\n');
+      const headers = lines.shift().split(',');
+      const students = {};
+      const fields = {};
 
-    const lines = data.trim().split('\n');
-    const headers = lines.shift().split(',');
-    const students = lines.map((line) => {
-      const values = line.split(',');
-      return headers.reduce((obj, header, index) => ({
-        ...obj,
-        [header.trim()]:
-                  values[index].trim(),
-      }),
-      {});
-    });
-    resolve(students);
+      for (const line of lines) {
+        const [firstname, , , field] = line.split(',');
+        if (field) {
+          if (!students[field]) {
+            students[field] = [];
+            fields[field] = 0;
+          }
+          students[field].push(firstname);
+          fields[field] += 1;
+        }
+      }
+
+      const totalStudents = Object.values(fields).reduce((acc, cur) => acc + cur, 0);
+      let output = 'This is the list of our students\n';
+      output += `Number of students: ${totalStudents}\n`;
+      for (const [field, count] of Object.entries(fields)) {
+        output += `Number of students in ${field}: ${count}. List: ${students[field].join(', ')}\n`;
+      }
+      resolve(output.trim());
+    }
   });
 });
 
@@ -33,25 +45,15 @@ const handleRequest = async (req, res) => {
 
   if (url === '/') {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.write('Hello Holberton School!');
-    res.end();
-    // res.end('Hello Holberton School!');
+    res.end('Hello Holberton School!');
   } else if (url === '/students') {
     try {
-      const students = await countStudents(DB_FILE);
-      const totalStudents = students.length;
-      const csStudents = students.filter((student) => student.field === 'CS');
-      const sweStudents = students.filter((student) => student.field === 'SWE');
-
+      const output = await countStudents(DB_FILE);
       res.writeHead(200, { 'Content-Type': 'text/plain' });
-      res.write('This is the list of our students\n');
-      res.write(`Number of students: ${totalStudents}\n`);
-      res.write(`Number of students in CS: ${csStudents.length}. List: ${csStudents.map((student) => student.firstname).join(', ')}\n`);
-      res.write(`Number of students in SWE: ${sweStudents.length}. List: ${sweStudents.map((student) => student.firstname).join(', ')}`);
-      res.end();
+      res.end(output);
     } catch (err) {
-      res.writeHead(500, { 'Content-Type': 'text/plain' });
-      res.end(err.message);
+      res.writeHead(404, { 'Content-Type': 'text/plain' });
+      res.end('Cannot load the database\n');
     }
   } else {
     res.writeHead(404, { 'Content-Type': 'text/plain' });
