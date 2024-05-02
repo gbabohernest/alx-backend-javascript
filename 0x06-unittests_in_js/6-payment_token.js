@@ -1,12 +1,12 @@
-const getPaymentTokenFromAPI = (success) => {
+/* eslint-disable no-unused-vars */
+const getPaymentTokenFromAPI = (success) => new Promise((resolve, reject) => {
   if (success) {
-    return Promise.resolve(
+    resolve(
       {
         data: 'Successful response from the API',
       },
     );
   }
-  return Promise.resolve();
-};
+});
 
 module.exports = getPaymentTokenFromAPI;
