@@ -75,7 +75,7 @@ describe('calculateNumber', () => {
       assert.strictEqual(calculateNumber('DIVIDE', 6, -3), -2);
     });
     it('should return Error when dividing by 0', () => {
-      assert.strictEqual(calculateNumber('DIVIDE', 4, 0) instanceof Error, true);
+      assert.strictEqual(calculateNumber('DIVIDE', 4, 0), 'Error');
     });
 
     it('should return 0.5 when dividing 4 by 8', () => {

@@ -12,7 +12,7 @@ const calculateNumber = (type, a, b) => {
 
     case 'DIVIDE':
       if (roundedB === 0) {
-        return new Error('Error');
+        return 'Error';
       }
       return roundedA / roundedB;
 
