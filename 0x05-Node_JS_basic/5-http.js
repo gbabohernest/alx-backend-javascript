@@ -47,13 +47,18 @@ const handleRequest = async (req, res) => {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
     res.end('Hello Holberton School!');
   } else if (url === '/students') {
-    try {
-      const output = await countStudents(DB_FILE);
-      res.writeHead(200, { 'Content-Type': 'text/plain' });
-      res.end(output);
-    } catch (err) {
+    if (!DB_FILE) {
       res.writeHead(404, { 'Content-Type': 'text/plain' });
       res.end('Cannot load the database\n');
+    } else {
+      try {
+        const output = await countStudents(DB_FILE);
+        res.writeHead(200, { 'Content-Type': 'text/plain' });
+        res.end(output);
+      } catch (err) {
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end('Cannot load the database\n');
+      }
     }
   } else {
     res.writeHead(404, { 'Content-Type': 'text/plain' });
