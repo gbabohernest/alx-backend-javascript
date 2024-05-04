@@ -17,4 +17,4 @@ This repository is a comprehensive collection of Javascript backend projects tai
 | [`0x03. ES6 data manipulation`](./0x03-ES6_data_manipulation/) | ES6 data manipulation - **`Javascript`** **`ES6`**                                                                      |
 | [`0x04-TypeScript`](./0x04-TypeScript)                         | Typescript - **`Javascript`** **`ES6`**                                                                                 |
 | [`0x05-Node_JS_basic`](./0x05-Node_JS_basic)                   | NodeJs Basics - **`Back-end`** **`Javascript`** **`ES6`**  **`NodeJs`** **`ExpressJs`**                                 |
-| [`0x06-unittests_in_js`](./0x06-unittests_in_js)               | Unittests in JS - **`Unit Tests`** **`Back-end`** **`JavaScript`** **`ES6`** **`NodeJs`**  **`ExpressJs`**  **`Mocha`** |
+| [`0x06-unittests_in_js`](./0x06-unittests_in_js)               | Unittests in JavaScript - **`Unit Tests`** **`Back-end`** **`JavaScript`** **`ES6`** **`NodeJs`**  **`ExpressJs`**  **`Mocha`** |
